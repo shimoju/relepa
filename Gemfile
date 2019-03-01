@@ -4,5 +4,6 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
+gem 'activesupport', require: 'active_support'
 gem 'octokit'
 gem 'pry'
