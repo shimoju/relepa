@@ -9,7 +9,6 @@ date_range = Time.now.all_week
 client = Octokit::Client.new(access_token: ENV['GITHUB_API_TOKEN'])
 
 puts "#{date_range.first.strftime('%Y/%m/%d')} 今週のリリースノート (SUZURI)"
-puts
 ARGV.each do |repo|
   puts "[*** #{repo}]"
   client.
@@ -19,9 +18,8 @@ ARGV.each do |repo|
     }.
     reverse.
     each { |pull|
-      puts "🎉 #{pull.merged_at.localtime.strftime('%Y/%m/%d %H:%M')} [#{pull.html_url} #{pull.title}] by [#{pull.user.login}.icon]"
-      puts 'code:text'
-      puts pull.body.sub(/#+ 何を解決するのか\s*/, '').sub(/#+ 変更点.*/m, '').gsub(/^/, "\t")
+      puts "🎉 [#{pull.html_url} #{pull.title}] by [#{pull.user.login}.icon] #{pull.merged_at.localtime.strftime('%Y/%m/%d %H:%M')}"
+      puts pull.body.sub(/#+ 何を解決するのか\s*/, '').sub(/#+ 変更点.*/m, '').gsub(/^/, '>')
       puts
     }
     puts
