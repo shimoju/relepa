@@ -24,3 +24,4 @@ ARGV.each do |repo|
     }
     puts
 end
+puts '#リリースノート'
